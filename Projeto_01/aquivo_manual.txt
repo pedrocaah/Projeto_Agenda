@@ -1,0 +1,22 @@
+String arquivoCsv = "atual.txt";
+        List<Pessoa> pessoas = new ArrayList<>();
+        Scanner scanner = new Scanner(new File(arquivoCsv));
+        while (scanner.hasNextLine()) {
+            String linha = scanner.nextLine();
+            Pessoa pessoa = ConversorLinhaPessoa.obtemPessoa(linha);
+            pessoas.add(pessoa);
+        }
+
+Criou o arquivo manualmente.
+
+---------------------------------------------------
+
+try (BufferedReader reader = new BufferedReader(new FileReader(arquivoCsv))) {
+            String linha;
+            while ((linha = reader.readLine()) != null) {
+                Pessoa pessoa = ConversorLinhaPessoa.obtemPessoa(linha);
+                pessoas.add(pessoa);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
